@@ -1,0 +1,29 @@
+{
+  "name": "mutant-clicker",
+  "version": "1.0.0",
+  "description": "Mutant Mayhem Online - fullstack web game",
+  "main": "start.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon -e js,html,njk,json,css start.js",
+    "start": "node start.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "better-sqlite3": "^12.9.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-session": "^1.19.0",
+    "morgan": "^1.10.1",
+    "mysql2": "^3.12.0",
+    "nunjucks": "^3.2.4",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^6.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

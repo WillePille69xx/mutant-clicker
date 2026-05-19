@@ -1,0 +1,34 @@
+{% extends "loginRegisterLayout.njk" %}
+
+{% block content %}
+<main class="wrapper">
+
+    <form class="form register" action="/register" method="post">
+
+        <h1>Register</h1>
+
+        <div class="form-control">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+
+        <div class="form-control">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <div class="form-control">
+            <label for="password-check">Confirm Password:</label>
+            <input type="password" id="password-check" name="passwordCheck" required>
+        </div>
+
+        <button type="submit">Register</button>
+        <p>
+            Have a account?
+            <a href="/login">Login</a>
+        </p>
+
+    </form>
+
+</main>
+{% endblock %}

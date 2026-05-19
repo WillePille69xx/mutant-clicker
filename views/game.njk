@@ -1,0 +1,41 @@
+{% extends "gameLayout.njk" %}
+
+{% block title %}
+Mutant Mayhem Clicker
+{% endblock %}
+
+{% block content %}
+
+<h1>Mutant Mayhem Clicker</h1>
+
+<div class="stats">
+    <p>DNA: <span id="money">0</span></p>
+    <p>DNA Per Second: <span id="mps">0</span></p>
+    <p>DNA Per Click: <span id="mpc">1</span></p>
+    <p>Upgrades: <span id="upgrades">0</span></p>
+</div>
+
+<div class="game-container">
+    <button id="game-button">
+        Generate DNA
+    </button>
+</div>
+
+<div id="msgbox"></div>
+
+<section>
+    <h2>Upgrades</h2>
+    <div id="upgradelist"></div>
+</section>
+
+<audio id="swoosh" src="/audio/swoosh.wav"></audio>
+
+<a href="/logout">Logout</a>
+<script src="/js/clicker.js" defer></script>
+{% endblock %}
+
+{% block scripts %}
+<script src="/public/js/clicker.js" defer></script>
+<script src="/js/mutantChamber.js" defer></script>
+
+{% endblock %}
