@@ -28,6 +28,7 @@ router.get("/get_progress", (req, res) => {
         money_per_click: 1,
         money_per_second: 0,
         upgrades: 0,
+        upgrades_data: '',
         clicks: 0
     })
 })
@@ -42,6 +43,7 @@ router.post("/save_progress", (req, res) => {
         moneyPerClick,
         moneyPerSecond,
         acquiredUpgrades,
+        upgradesData,
         numberOfClicks
     } = req.body
 
@@ -57,6 +59,7 @@ router.post("/save_progress", (req, res) => {
                 money_per_click = ?,
                 money_per_second = ?,
                 upgrades = ?,
+                upgrades_data = ?,
                 clicks = ?,
                 updated_at = datetime('now')
             WHERE user_id = ?
@@ -65,6 +68,7 @@ router.post("/save_progress", (req, res) => {
             moneyPerClick,
             moneyPerSecond,
             acquiredUpgrades,
+            upgradesData,
             numberOfClicks,
             req.session.user.id
         )
@@ -76,15 +80,17 @@ router.post("/save_progress", (req, res) => {
                 money_per_click,
                 money_per_second,
                 upgrades,
+                upgrades_data,
                 clicks
             )
-            VALUES (?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
         `).run(
             req.session.user.id,
             dna,
             moneyPerClick,
             moneyPerSecond,
             acquiredUpgrades,
+            upgradesData,
             numberOfClicks
         )
     }

@@ -37,86 +37,81 @@ let active = false; // exempel för att visa att du kan lägga till klass för a
 
 let achievements = [
     {
-        description: 'Gene Splicer has been unlocked, let the experiments begin!',
-        requiredUpgrades: 1,
-        acquired: false,
-    },
-    {
-        description: 'The first mutant is alive, you’re on your way!',
-        requiredUpgrades: 5,
-        acquired: false,
-    },
-    {
-        description: 'Mutant Army Recruiter, you’re getting stronger!',
-        requiredUpgrades: 20,
-        acquired: false,
-    },
-    {
-        description: 'A true mad scientist, the lab is thriving!',
-        requiredUpgrades: 50,
-        acquired: false,
-    },
-    {
-        description: 'Unleashed chaos, mutants everywhere!',
-        requiredClicks: 1000,
-        acquired: false,
-    },
-    {
-        description: 'You’ve mutated your first creature into a beast!',
-        requiredClicks: 5000,
-        acquired: false,
-    },
-    {
-        description: 'Genetic Overlord, your mutant army grows!',
-        requiredClicks: 15000,
-        acquired: false,
-    },
-    {
-        description: 'World Destruction is within your reach!',
-        requiredClicks: 50000,
-        acquired: false,
-    },
-    {
-        description: 'Pure Evil, the lab has reached maximum chaos!',
-        requiredUpgrades: 100,
-        acquired: false,
-    },
-    {
-        description: 'Cosmic Mutation! You’ve unlocked the ultimate DNA formula!',
-        requiredUpgrades: 200,
-        acquired: false,
-    },
-    {
-        description: 'You’re a true master of genetic manipulation!',
-        requiredMoney: 1000000,
-        acquired: false,
-    },
-    {
-        description: 'Rookie achievement, you’ve clicked the button!',
+        description: 'First Spark: You generated your first DNA!',
         requiredClicks: 1,
         acquired: false,
     },
     {
-        description: 'You’re getting up in the world!',
+        description: 'Pocket Scientist: You reached 100 DNA.',
         requiredMoney: 100,
         acquired: false,
     },
     {
-        description: 'Wow, you’re pretty good!',
+        description: 'Lab Assistant: You bought your first upgrade.',
+        requiredUpgrades: 1,
+        acquired: false,
+    },
+    {
+        description: 'Gene Collector: You reached 1,000 DNA.',
         requiredMoney: 1000,
         acquired: false,
     },
     {
-        description: 'lol, 69',
-        requiredMoney: 69,
+        description: 'Mutation Starter: You bought 5 upgrades.',
+        requiredUpgrades: 5,
         acquired: false,
     },
     {
-        description: 'Guess what? You’re a pro!',
-        requiredMoney: 50000,
+        description: 'Click Goblin: You clicked 250 times.',
+        requiredClicks: 250,
         acquired: false,
     },
-];
+    {
+        description: 'Biohazard Budget: You reached 10,000 DNA.',
+        requiredMoney: 10000,
+        acquired: false,
+    },
+    {
+        description: 'Mutant Manager: You bought 15 upgrades.',
+        requiredUpgrades: 15,
+        acquired: false,
+    },
+    {
+        description: 'Industrial Mutation: You reached 100 DNA per second.',
+        requiredMps: 100,
+        acquired: false,
+    },
+    {
+        description: 'Lab Overclocked: You reached 1,000 DNA per second.',
+        requiredMps: 1000,
+        acquired: false,
+    },
+    {
+        description: 'The Army Begins: You bought 30 upgrades.',
+        requiredUpgrades: 30,
+        acquired: false,
+    },
+    {
+        description: 'World Threat: You reached 1,000,000 DNA.',
+        requiredMoney: 1000000,
+        acquired: false,
+    },
+    {
+        description: 'Genetic Overlord: You clicked 10,000 times.',
+        requiredClicks: 10000,
+        acquired: false,
+    },
+    {
+        description: 'Cosmic Mutation: You reached 25,000 DNA per second.',
+        requiredMps: 25000,
+        acquired: false,
+    },
+    {
+        description: 'Nice Mutation: You reached exactly 69 DNA. Hehe, Nice.',
+        requiredMoney: 69,
+        acquired: false,
+    },
+]
 
 
 /* Med ett valt element, som knappen i detta fall så kan vi skapa listeners
@@ -183,16 +178,31 @@ function step(timestamp) {
             achievement.acquired = true;
             message(achievement.description, 'achievement');
             return false;
-        } else if (
+        } if (
             achievement.requiredClicks &&
             numberOfClicks >= achievement.requiredClicks
         ) {
             achievement.acquired = true;
             message(achievement.description, 'achievement');
             return false;
+        } if (
+            achievement.requiredMoney &&
+            money >= achievement.requiredMoney
+        ) {
+            achievement.acquired = true
+            message(achievement.description, 'achievement')
+            return false
+        } if (
+            achievement.requiredMps &&
+            moneyPerSecond >= achievement.requiredMps
+        ) {
+            achievement.acquired = true
+            message(achievement.description, 'achievement')
+            return false
         }
-        return true;
-    });
+
+        return true
+    })
 
     window.requestAnimationFrame(step);
 }
@@ -223,58 +233,86 @@ window.addEventListener('load', async () => {
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer
  */
-const upgrades = [
+let upgrades = [
     {
         name: 'Basic Gene Splicer',
+        description: 'A rusty tool that slices DNA just well enough.',
         cost: 10,
         amount: 1,
     },
     {
-        name: 'DNA Amplification',
-        cost: 100,
-        amount: 5,
+        name: 'DNA Amplifier',
+        description: 'Boosts weak DNA signals into usable mutation energy.',
+        cost: 75,
+        amount: 3,
+    },
+    {
+        name: 'Toxic Serum Mixer',
+        description: 'Mixes glowing green serum. Probably safe.',
+        cost: 250,
+        amount: 8,
     },
     {
         name: 'Mutation Chamber',
-        cost: 500,
-        amount: 15,
+        description: 'A suspicious pod where experiments become stronger.',
+        cost: 750,
+        amount: 20,
     },
     {
-        name: 'Toxic Serum',
-        cost: 1500,
-        amount: 40,
+        name: 'Cloning Vat',
+        description: 'Creates tiny unstable mutants that produce DNA.',
+        cost: 2500,
+        amount: 60,
     },
     {
-        name: 'Mutant Cloning Vat',
-        cost: 5000,
-        amount: 100,
-    },
-    {
-        name: 'Radioactive Lab',
-        cost: 15000,
-        amount: 300,
+        name: 'Radioactive Reactor',
+        description: 'Powers the whole lab with questionable radiation.',
+        cost: 10000,
+        amount: 180,
     },
     {
         name: 'Alien DNA Extractor',
+        description: 'Extracts rare DNA from mysterious alien samples.',
         cost: 50000,
-        amount: 1000,
+        amount: 750,
     },
     {
-        name: 'Monster Army Factory',
-        cost: 150000,
-        amount: 3000,
+        name: 'Mutant Assembly Line',
+        description: 'Mass-produces your mutant army automatically.',
+        cost: 200000,
+        amount: 2500,
     },
     {
         name: 'World Domination Lab',
-        cost: 500000,
-        amount: 10000,
+        description: 'A full evil-scientist headquarters.',
+        cost: 1000000,
+        amount: 12000,
     },
     {
         name: 'Cosmic Mutation Core',
-        cost: 1000000,
-        amount: 25000,
+        description: 'A reality-bending core full of impossible DNA.',
+        cost: 7500000,
+        amount: 75000,
     },
-];
+    {
+        name: 'Clicker Glove',
+        description: 'Makes every click inject extra mutation power.',
+        cost: 500,
+        clicks: 2,
+    },
+    {
+        name: 'Cybernetic Finger',
+        description: 'Precision clicking enhanced with metal joints.',
+        cost: 5000,
+        clicks: 10,
+    },
+    {
+        name: 'Mad Scientist Reflexes',
+        description: 'Your clicks become dangerously efficient.',
+        cost: 50000,
+        clicks: 50,
+    },
+]
 
 /* createCard är en funktion som tar ett upgrade objekt som parameter och skapar
  * ett html kort för det.
@@ -295,35 +333,49 @@ const upgrades = [
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
  */
 function createCard(upgrade) {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    const header = document.createElement('p');
-    header.classList.add('title');
-    const cost = document.createElement('p');
+    const card = document.createElement('div')
+    card.classList.add('card')
+
+    const header = document.createElement('p')
+    header.classList.add('title')
+
+    const description = document.createElement('p')
+    description.classList.add('description')
+    description.textContent = upgrade.description
+
+    const cost = document.createElement('p')
+
     if (upgrade.amount) {
-        header.textContent = `${upgrade.name}, +${upgrade.amount} per second.`;
+        header.textContent = `${upgrade.name}, +${upgrade.amount} DNA/sec.`
     } else {
-        header.textContent = `${upgrade.name}, +${upgrade.clicks} per click.`;
+        header.textContent = `${upgrade.name}, +${upgrade.clicks} DNA/click.`
     }
-    cost.textContent = `Buy for ${upgrade.cost} DNA.`;
 
-    card.addEventListener('click', (e) => {
+    cost.textContent = `Buy for ${Math.round(upgrade.cost)} DNA.`
+
+    card.addEventListener('click', () => {
         if (money >= upgrade.cost) {
-            acquiredUpgrades++;
-            money -= upgrade.cost;
-            upgrade.cost *= 1.5;
-            cost.textContent = 'Buy for ' + Math.round(upgrade.cost) + ' DNA.';
-            moneyPerSecond += upgrade.amount ? upgrade.amount : 0;
-            moneyPerClick += upgrade.clicks ? upgrade.clicks : 0;
-            message('Congratulation you have bought an uppgrade!', 'success');
-        } else {
-            message('You Cannot Afford. Broke ass.', 'warning');
-        }
-    });
+            acquiredUpgrades++
+            money -= upgrade.cost
+            upgrade.cost = Math.round(upgrade.cost * 1.5)
 
-    card.appendChild(header);
-    card.appendChild(cost);
-    return card;
+            cost.textContent = `Buy for ${Math.round(upgrade.cost)} DNA.`
+
+            moneyPerSecond += upgrade.amount ? upgrade.amount : 0
+            moneyPerClick += upgrade.clicks ? upgrade.clicks : 0
+
+            message('Upgrade purchased!', 'success')
+            saveProgress()
+        } else {
+            message('You cannot afford this upgrade.', 'warning')
+        }
+    })
+
+    card.appendChild(header)
+    card.appendChild(description)
+    card.appendChild(cost)
+
+    return card
 }
 
 /* Message visar hur vi kan skapa ett html element och ta bort det.
@@ -367,6 +419,10 @@ async function loadProgress() {
   moneyPerSecond = data.money_per_second || 0
   acquiredUpgrades = data.upgrades || 0
   numberOfClicks = data.clicks || 0
+
+  if (data.upgrades_data) {
+    upgrades = JSON.parse(data.upgrades_data)
+}
 }
 
 async function saveProgress() {
@@ -380,6 +436,7 @@ async function saveProgress() {
       moneyPerClick,
       moneyPerSecond,
       acquiredUpgrades,
+      upgradesData: JSON.stringify(upgrades),
       numberOfClicks
     })
   })

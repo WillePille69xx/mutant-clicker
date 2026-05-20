@@ -158,3 +158,19 @@ body {
 .active {
     color: #7cff6b;
 }
+
+@media (max-width: 800px) {
+    .stats {
+        grid-template-columns:  1fr 1fr;
+    }
+
+    .game-area {
+        grid-template-columns: 1fr;
+    }
+
+    #game-button {
+        width: 190px;
+        height: 190px;
+    }
+
+}
