@@ -237,78 +237,91 @@ let upgrades = [
     {
         name: 'Basic Gene Splicer',
         description: 'A rusty tool that slices DNA just well enough.',
+        image: '/img/upgrades/gene-splicer.png',
         cost: 10,
         amount: 1,
     },
     {
         name: 'DNA Amplifier',
         description: 'Boosts weak DNA signals into usable mutation energy.',
+        image: '/img/upgrades/DNA-Amplifier.png',
         cost: 75,
         amount: 3,
     },
     {
         name: 'Toxic Serum Mixer',
         description: 'Mixes glowing green serum. Probably safe.',
+        image: '/img/upgrades/Toxic-Serum-Mixer.png',
         cost: 250,
         amount: 8,
     },
     {
         name: 'Mutation Chamber',
         description: 'A suspicious pod where experiments become stronger.',
+        image: '/img/upgrades/Mutation-Chamber.png',
         cost: 750,
         amount: 20,
     },
     {
         name: 'Cloning Vat',
         description: 'Creates tiny unstable mutants that produce DNA.',
+        image: '/img/upgrades/Cloning-Vat.png',
         cost: 2500,
         amount: 60,
     },
     {
         name: 'Radioactive Reactor',
         description: 'Powers the whole lab with questionable radiation.',
+        image: '/img/upgrades/Radioactive-Reactor.png',
         cost: 10000,
         amount: 180,
     },
     {
         name: 'Alien DNA Extractor',
         description: 'Extracts rare DNA from mysterious alien samples.',
+        image: '/img/upgrades/Alien-DNA-Extractor.png',
         cost: 50000,
         amount: 750,
     },
     {
         name: 'Mutant Assembly Line',
         description: 'Mass-produces your mutant army automatically.',
+        image: '/img/upgrades/Mutant-Assembly-Line.png',
         cost: 200000,
         amount: 2500,
     },
     {
         name: 'World Domination Lab',
         description: 'A full evil-scientist headquarters.',
+        image: '/img/upgrades/World-Domination-Lab.png',
         cost: 1000000,
         amount: 12000,
     },
     {
         name: 'Cosmic Mutation Core',
         description: 'A reality-bending core full of impossible DNA.',
+        image: '/img/upgrades/Cosmic-Mutation-Core.png',
         cost: 7500000,
         amount: 75000,
     },
     {
         name: 'Clicker Glove',
         description: 'Makes every click inject extra mutation power.',
+        image: '/img/upgrades/Clicker-Glove.png',
         cost: 500,
         clicks: 2,
     },
     {
         name: 'Cybernetic Finger',
         description: 'Precision clicking enhanced with metal joints.',
+        image: '/img/upgrades/Cybernetic-Finger.png',
         cost: 5000,
         clicks: 10,
     },
     {
         name: 'Mad Scientist Reflexes',
         description: 'Your clicks become dangerously efficient.',
+        image: '/img/upgrades/Mad-Scientist-Reflexes.png',
         cost: 50000,
         clicks: 50,
     },
@@ -332,9 +345,18 @@ let upgrades = [
  * https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
  */
+
 function createCard(upgrade) {
+
     const card = document.createElement('div')
     card.classList.add('card')
+
+    const img = document.createElement('img')
+    img.src = upgrade.image
+    img.classList.add('upgrade-image')
+
+    const content = document.createElement('div')
+    content.classList.add('card-content')
 
     const header = document.createElement('p')
     header.classList.add('title')
@@ -344,40 +366,51 @@ function createCard(upgrade) {
     description.textContent = upgrade.description
 
     const cost = document.createElement('p')
+    cost.classList.add('cost')
 
     if (upgrade.amount) {
-        header.textContent = `${upgrade.name}, +${upgrade.amount} DNA/sec.`
+        header.textContent =
+            `${upgrade.name}, +${upgrade.amount} DNA/sec.`
     } else {
-        header.textContent = `${upgrade.name}, +${upgrade.clicks} DNA/click.`
+        header.textContent =
+            `${upgrade.name}, +${upgrade.clicks} DNA/click.`
     }
 
-    cost.textContent = `Buy for ${Math.round(upgrade.cost)} DNA.`
+    cost.textContent =
+        `Buy for ${Math.round(upgrade.cost)} DNA.`
 
     card.addEventListener('click', () => {
         if (money >= upgrade.cost) {
             acquiredUpgrades++
             money -= upgrade.cost
-            upgrade.cost = Math.round(upgrade.cost * 1.5)
 
-            cost.textContent = `Buy for ${Math.round(upgrade.cost)} DNA.`
+            upgrade.cost =
+                Math.round(upgrade.cost * 1.5)
 
-            moneyPerSecond += upgrade.amount ? upgrade.amount : 0
-            moneyPerClick += upgrade.clicks ? upgrade.clicks : 0
-
+            cost.textContent =
+                `Buy for ${Math.round(upgrade.cost)} DNA.`
+            moneyPerSecond +=
+                upgrade.amount ? upgrade.amount : 0
+            moneyPerClick +=
+                upgrade.clicks ? upgrade.clicks : 0
             message('Upgrade purchased!', 'success')
             saveProgress()
         } else {
-            message('You cannot afford this upgrade.', 'warning')
+            message(
+                'You cannot afford this upgrade.',
+                'warning'
+            )
         }
     })
 
-    card.appendChild(header)
-    card.appendChild(description)
-    card.appendChild(cost)
+    content.appendChild(header)
+    content.appendChild(description)
+    content.appendChild(cost)
+    card.appendChild(img)
+    card.appendChild(content)
 
     return card
 }
-
 /* Message visar hur vi kan skapa ett html element och ta bort det.
  * appendChild används för att lägga till och removeChild för att ta bort.
  * Detta görs med en timer.
