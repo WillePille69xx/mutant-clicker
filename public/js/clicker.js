@@ -351,8 +351,9 @@ function createCard(upgrade) {
     const card = document.createElement('div')
     card.classList.add('card')
 
-    const img = document.createElement('img')
+    const img = document.createElement('img', { is: 'upgrade-image' })
     img.src = upgrade.image
+    img.alt = upgrade.name
     img.classList.add('upgrade-image')
 
     const content = document.createElement('div')

@@ -1,5 +1,9 @@
 {% extends "loginRegisterLayout.njk" %}
 
+{% block title %}
+Register
+{% endblock %}
+
 {% block content %}
 <main class="wrapper">
 
@@ -26,7 +30,7 @@
             <input type="password" id="password-check" name="passwordCheck" required>
         </div>
 
-        <button type="submit">Register</button>
+        <button type="submit" alt="Register button.">Register</button>
         <p>
             Have a account?
             <a href="/login">Login</a>

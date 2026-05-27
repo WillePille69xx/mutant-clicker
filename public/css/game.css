@@ -87,7 +87,7 @@ body {
     transform: scale(1.04);
 }
 
-#game-button:active {
+#game-button:active {  
     transform: scale(0.95);
 }
 
