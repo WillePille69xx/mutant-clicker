@@ -12,7 +12,7 @@ router.post("/register", async (req, res) => {
     const { username, password, passwordCheck } = req.body
 
     if (password !== passwordCheck) {
-        return res.send("Passwords do not match")
+        return res.render("register.njk", { error: "Passwords do not match" })
     }
 
     try {
@@ -30,7 +30,7 @@ router.post("/register", async (req, res) => {
         console.error(err)
 
         if (err.code === "SQLITE_CONSTRAINT_UNIQUE") {
-            return res.send("Username already exists")
+            return res.render("register.njk", { error: "Username already exists" })
         }
 
         res.status(500).send("Server error")
@@ -51,13 +51,13 @@ router.post("/login", async (req, res) => {
         `).get(username)
 
         if (!user) {
-            return res.send("User not found")
+            return res.render("login.njk", { error: "User not found" })
         }
 
         const match = await bcrypt.compare(password, user.password_hash)
 
         if (!match) {
-            return res.send("Wrong password")
+            return res.render("login.njk", { error: "Wrong password" })
         }
 
         req.session.user = {
@@ -68,7 +68,7 @@ router.post("/login", async (req, res) => {
         res.redirect("/game")
     } catch (err) {
         console.error(err)
-        res.status(500).send("Server error")
+        res.status(500).render("login.njk", { error: "Server error" })
     }
 })
 

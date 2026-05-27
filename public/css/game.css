@@ -33,6 +33,8 @@ body {
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
     margin-bottom: 2rem;
+    position: sticky;
+    top: 0;
 }
 
 .stats p {
@@ -114,7 +116,7 @@ body {
     transition: 0.15s;
 }
 
-.card:hover {
+.card:hover {      
     background: #334155;
     transform: translateY(-2px);
     border-color: #7cff6b;

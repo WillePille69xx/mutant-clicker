@@ -7,6 +7,10 @@
 
         <h1>Register</h1>
 
+        {% if error %}
+            <p class="form-error">{{ error }}</p>
+        {% endif %}
+
         <div class="form-control">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>

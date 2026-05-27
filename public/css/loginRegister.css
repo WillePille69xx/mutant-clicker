@@ -96,3 +96,12 @@ body {
   text-align: center;
   margin: 0;
 }
+
+.form-error {
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  background: #7f1d1d;
+  color: #fecaca;
+  text-align: center;
+  font-weight: bold;
+}
