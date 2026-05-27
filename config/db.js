@@ -20,6 +20,7 @@ db.exec(`
     money_per_second INTEGER DEFAULT 0,
     upgrades INTEGER DEFAULT 0,
     upgrades_data TEXT DEFAULT "",
+    achievements_data TEXT DEFAULT "",
     clicks INTEGER DEFAULT 0,
     updated_at TEXT DEFAULT (datetime('now')),
     FOREIGN KEY (user_id) REFERENCES users(id)

@@ -44,6 +44,7 @@ router.post("/save_progress", (req, res) => {
         moneyPerSecond,
         acquiredUpgrades,
         upgradesData,
+        achievementsData,
         numberOfClicks
     } = req.body
 
@@ -60,6 +61,7 @@ router.post("/save_progress", (req, res) => {
                 money_per_second = ?,
                 upgrades = ?,
                 upgrades_data = ?,
+                achievements_data = ?,
                 clicks = ?,
                 updated_at = datetime('now')
             WHERE user_id = ?
@@ -69,6 +71,7 @@ router.post("/save_progress", (req, res) => {
             moneyPerSecond,
             acquiredUpgrades,
             upgradesData,
+            achievementsData,
             numberOfClicks,
             req.session.user.id
         )
@@ -81,6 +84,7 @@ router.post("/save_progress", (req, res) => {
                 money_per_second,
                 upgrades,
                 upgrades_data,
+                achievements_data
                 clicks
             )
             VALUES (?, ?, ?, ?, ?, ?, ?)

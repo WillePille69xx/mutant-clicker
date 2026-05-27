@@ -456,6 +456,9 @@ async function loadProgress() {
   if (data.upgrades_data) {
     upgrades = JSON.parse(data.upgrades_data)
 }
+  if (data.achievements_data) {
+    achievements = JSON.parse(data.achievements_data)
+  }
 }
 
 async function saveProgress() {
@@ -470,6 +473,7 @@ async function saveProgress() {
       moneyPerSecond,
       acquiredUpgrades,
       upgradesData: JSON.stringify(upgrades),
+      achievementsData: JSON.stringify(achievements),
       numberOfClicks
     })
   })
